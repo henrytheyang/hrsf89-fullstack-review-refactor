@@ -10,7 +10,6 @@ class App extends React.Component {
     this.state = { 
       repos: []
     }
-
   }
 
   search (term) {
@@ -20,8 +19,19 @@ class App extends React.Component {
       url: 'http://127.0.0.1:1128/repos',
       data: term,
       contentType: 'text/plain',
-      success: () => {console.log('Post success!')},
-      failure: () => {alert('Search error!')}
+      success: (data) => {
+        console.log('back to client!');
+        // console.log(data);
+        this.updateRepo(data);
+      },
+      failure: () => {console.log('Search error!')},
+    })
+  }
+
+  updateRepo(input) {
+    console.log('hey there')
+    this.setState({
+      repos: input,
     })
   }
 
