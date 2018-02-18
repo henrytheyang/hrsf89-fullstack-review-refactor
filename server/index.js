@@ -13,9 +13,13 @@ app.post('/repos', function (req, res) {
   // save the repo information in the database
   console.log('req.body = ', req.body)
   var searchTerm = req.body;
-  // call the github helper, pass in res.send as a callback
-  github.getReposByUsername(searchTerm, () => 
-    res.send()); // Data sent back to client
+  // call the github helper
+  github.getReposByUsername(searchTerm, () => { 
+    console.log('back from api to server');
+    // Pass in save to mongo as a callback
+      // pass in res.send as a callback to that
+       // res.send()
+  }); // Data sent back to client
 });
 
 app.get('/repos', function (req, res) {
