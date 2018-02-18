@@ -21,7 +21,7 @@ class App extends React.Component {
       contentType: 'text/plain',
       success: (data) => {
         console.log('back to client!');
-        // console.log(data);
+        console.log('client sees data = ', data);
         this.updateRepo(data);
       },
       failure: () => {console.log('Search error!')},

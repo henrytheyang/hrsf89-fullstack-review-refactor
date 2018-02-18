@@ -14,14 +14,19 @@ let getReposByUsername = (searchTerm, callback) => {
       'Authorization': `token ${config.TOKEN}`
     }
   };
+  console.log('options.url = ', options.url)
   request(options, (error, response, body) => {
     console.log('error:', error);
     console.log('statusCode:', response && response.statusCode);
-    // console.log('body:', body);
-    // console.log('github helper typeof body = ', typeof body)
-    // console.log('typeof body =', typeof body)
-    // console.log('jsonparsed body = ', JSON.parse(body));
-    callback(JSON.parse(body));
+    if (body === []) {
+      console.log('empty return');
+    } else {
+      // console.log('body:', body);
+      // console.log('github helper typeof body = ', typeof body)
+      // console.log('typeof body =', typeof body)
+      // console.log('jsonparsed body = ', JSON.parse(body));
+      callback(JSON.parse(body));
+    }
   })
 }
 

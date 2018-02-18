@@ -12,7 +12,7 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (arrInput) => {
+let save = (arrInput, callback) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
@@ -33,9 +33,35 @@ let save = (arrInput) => {
       } else {
         console.log('Doc saved!!!');
         console.log('Doc saved = currentItem = ', currentItem)
+        // cb to fetch and send to client
+        fetch(callback);
       }
     })
   })
 }
+let fetch = function(cb) {
+  // if (err) {
+  //   console.error('fetch err');
+  // }
+  console.log('in fetch now');
+  Repo.find()
+    .sort('-stargazers_count')
+    .limit(2)
+    .exec( (err, data) => {
+      if (err) {
+        console.log ('error mongo - ', err)
+      }
+      console.log('data = ', data)
+      cb(data)
+      // cb
+    });
+    console.log('cb = ', cb)
+    // console.log(
+    //             Repo.find()
+    //             .sort('-stargazers_count')
+    //             .limit(25)
+    //             );
+}
 
 module.exports.save = save;
+module.exports.fetch = fetch;
