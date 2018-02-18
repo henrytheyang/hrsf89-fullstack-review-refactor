@@ -16,7 +16,9 @@ let save = (arrInput) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
-  console.log('in save now');
+  // console.log('in save now');
+  // console.log('arrInput type = ', typeof arrInput)
+  // console.log('arrInput = ', arrInput)
   arrInput.forEach((element) => {
     var currentItem = new Repo({
                                 stargazers_count: element.stargazers_count,
@@ -25,12 +27,12 @@ let save = (arrInput) => {
                                 html_url: element.html_url,
                                 forks: element.forks,
                               });
-    console.log('currentItem = ', currentItem)
     currentItem.save((err) => {
       if (err) {
         console.error(err);
       } else {
         console.log('Doc saved!!!');
+        console.log('Doc saved = currentItem = ', currentItem)
       }
     })
   })
