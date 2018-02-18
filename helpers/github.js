@@ -17,7 +17,7 @@ let getReposByUsername = (searchTerm, callback) => {
   request(options, (error, response, body) => {
     console.log('error:', error);
     console.log('statusCode:', response && response.statusCode);
-    console.log('body:', body);
+    // console.log('body:', body);
     console.log('typeof body =', typeof body)
     console.log('jsonparsed body = ', JSON.parse(body));
     callback(body);

@@ -14,8 +14,8 @@ app.post('/repos', function (req, res) {
   console.log('req.body = ', req.body)
   var searchTerm = req.body;
   // call the github helper, pass in res.send as a callback
-  github.getReposByUsername(searchTerm, res.send) // Data sent back to client
-  res.send('Server received request!'); 
+  github.getReposByUsername(searchTerm, () => 
+    res.send()); // Data sent back to client
 });
 
 app.get('/repos', function (req, res) {
